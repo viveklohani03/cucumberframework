@@ -22,7 +22,7 @@ public class addorbuycartstep {
 		cart.clickcarticon();
 		
 	}
-	@And("Select quantity from shirt dropdown")
+	@Then("Select quantity from shirt dropdown")
 	public void select_qty() {
 		cart.selectfromdropdown("2");
 	}

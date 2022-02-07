@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -32,7 +33,8 @@ public class addorbuycart{
 	By save_for_later = By.xpath(".//input[contains(@name'submit.save-for-later')]");
 	By saved_item = By.id("sc-saved-cart-list-caption-text");
 	By select_size_cart = By.xpath(".//input[@name='dropdown_selected_size_name']/option");
-	
+	By error_content = By.xpath(".//div[@class='a-alert-content']");
+	By carousel=By.xpath(".//ol[@class='a-carousel'])[1]/li");
 	public void addCart() {
 		method = new commonmethods(driver);
 		method.switchWindow();
@@ -63,6 +65,13 @@ public class addorbuycart{
 		this.qty = qty;
 		Select dropdown = new Select(driver.findElement(qtyicon));
 		dropdown.selectByValue(qty);
+		try{
+			driver.findElement(error_content).isDisplayed();
+			Assert.assertTrue(driver.findElement(error_content).isDisplayed());
+			method.switchtoparentwindow();
+		}catch(NoSuchElementException e) {
+			
+		}
 	}
 
 	public void sizedropdown(String size) {

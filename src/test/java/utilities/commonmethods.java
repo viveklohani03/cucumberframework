@@ -14,7 +14,8 @@ import io.cucumber.java.Scenario;
 
 public class commonmethods {
 	WebDriver driver;
-	
+	String parentwindow;
+
 	public commonmethods(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -31,7 +32,7 @@ public class commonmethods {
 	}
 
 	public void switchWindow() {
-		String parentwindow = driver.getWindowHandle();
+		parentwindow = driver.getWindowHandle();
 		Set<String> s = driver.getWindowHandles();
 		Iterator<String> s1 = s.iterator();
 		while(s1.hasNext())
@@ -40,7 +41,9 @@ public class commonmethods {
 			driver.switchTo().window(childwindow);
 		}
 		}
-
+	}
+	public void switchtoparentwindow() {
+		driver.switchTo().window(parentwindow);
 	}
 	public void tearDown(Scenario scenario) {
 		if (scenario.isFailed()) {
@@ -51,7 +54,7 @@ public class commonmethods {
 
 		}
 
-}
+	}
 	public String removespecialchar(String s) {
 		s = s.replaceAll("[^0-9\\.]", "");
 		return s;
