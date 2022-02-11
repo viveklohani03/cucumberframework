@@ -9,6 +9,7 @@ Then Select shirtsize with quantity more than two
 And Add shirt in cart
 Then Select quantity from shirt dropdown
 Then Verify two shirt is added with correct price
+
 @FirstTest
 Scenario: Verify item gets deleted from cart after deletion
 Given Verify user is on amazon.in home page
@@ -38,9 +39,6 @@ Then Select quantity from shirt dropdown
 Then Select shirt having quantity more than two
 And Add shirt in cart
 Then Select quantity from shirt dropdown
-
-
-
 
 
 

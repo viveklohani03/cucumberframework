@@ -5,12 +5,14 @@ import org.openqa.selenium.WebDriver;
 import pageobjects.addorbuycart;
 import pageobjects.homepage;
 import pageobjects.menshirts;
+import pageobjects.signin;
 
 public class PageObjectManager {
 	WebDriver driver;
 	addorbuycart cart;
 	homepage home;
 	menshirts shirt;
+	signin login;
 	
 	public PageObjectManager(WebDriver driver) {
 		this.driver = driver;
@@ -25,5 +27,8 @@ public class PageObjectManager {
 	}
 	public menshirts getshirt() {
 		return (shirt == null) ? shirt = new menshirts(driver) : shirt;
+	}
+	public signin getsignin() {
+		 return (login == null)? login = new signin(driver):login;
 	}
 }

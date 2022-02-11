@@ -17,7 +17,7 @@ public class homepage {
 	By amazonlogo = By.id("nav-logo-sprites");
 	By hemburgericon = By.id("nav-hamburger-menu");
 	By menulist = By.tagName("li");
-
+	By helloicon = By.id("nav-link-accountList");
 
 	public void openurl(String url) 
 	{ driver.get(url); }
@@ -39,6 +39,9 @@ public class homepage {
 	public void verifyhomepage() {
 		boolean logoverify = driver.findElement(amazonlogo).isDisplayed();
 		Assert.assertTrue(logoverify);	
-		
-		}
+
+	}
+	public void navigatetosignin() {
+		driver.findElement(helloicon).click();
+	}
 }

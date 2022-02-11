@@ -1,9 +1,15 @@
 package utilities;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -45,6 +51,7 @@ public class commonmethods {
 	public void switchtoparentwindow() {
 		driver.switchTo().window(parentwindow);
 	}
+
 	public void tearDown(Scenario scenario) {
 		if (scenario.isFailed()) {
 			// take screenshot:
@@ -59,4 +66,28 @@ public class commonmethods {
 		s = s.replaceAll("[^0-9\\.]", "");
 		return s;
 	}
+
+	public List<String> readExcelData(String path,String sheetName,int j) throws IOException {
+		List<String> data ;
+		try {
+			FileInputStream fs = new FileInputStream(path);
+			@SuppressWarnings("resource")
+			Workbook wb = new XSSFWorkbook(fs);
+			Sheet sheet1 = wb.getSheet(sheetName);
+			int lastrow = sheet1.getPhysicalNumberOfRows();
+			data = new ArrayList<String>();
+			for(int i=1;i<lastrow;i++) {
+				if(sheet1.getRow(i).getCell(j).getCellType()== CellType.STRING) {
+					data.add(sheet1.getRow(i).getCell(j).getStringCellValue());
+				}else if(sheet1.getRow(i).getCell(j).getCellType()== CellType.NUMERIC) {
+					data.add(String.valueOf(sheet1.getRow(i).getCell(j).getNumericCellValue()));
+				}
+			}
+		}catch(FileNotFoundException e) {
+			throw e;
+		}
+		return data;
+	}
+
+
 }

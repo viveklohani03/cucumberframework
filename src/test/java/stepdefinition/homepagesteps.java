@@ -28,4 +28,8 @@ public class homepagesteps {
 		homepage.selectMenuItem("Shirts");
 
 }
+	@When("User clicks Sign In icon and navigate to SignIn page")
+	public void click_signin_icon() {
+		homepage.navigatetosignin();
+	}
 }
